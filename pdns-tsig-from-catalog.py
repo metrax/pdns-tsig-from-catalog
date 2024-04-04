@@ -4,7 +4,7 @@ import mysql.connector
 import os
 
 parser = argparse.ArgumentParser(
-  prog='tsig-from-catalog for PowerDNS',
+  prog='pdns-tsig-from-catalog for PowerDNS',
   description='Sets the TSIG Key from catalog zone to the member zones')
 
 parser.add_argument(
