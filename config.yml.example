@@ -1,0 +1,2 @@
+---
+configfile: "/etc/powerdns/pdns.d/mysql.conf" # Path to pdns configuration file with mysql login

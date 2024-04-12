@@ -2,6 +2,7 @@ import argparse
 import configparser
 import mysql.connector
 import os
+import yaml
 
 parser = argparse.ArgumentParser(
   prog='pdns-tsig-from-catalog for PowerDNS',
@@ -10,21 +11,24 @@ parser = argparse.ArgumentParser(
 parser.add_argument(
    '--config',
    dest='config',
-   required=True,
-   help='powerdns config file, that inlcudes mysql login')
+   default="config.yml",
+   help='config file for this tool')
 args = parser.parse_args()
 
+with open(args.config, "r") as yamlfile:
+    config = yaml.safe_load(yamlfile)
 
-config = configparser.ConfigParser()
-with open(args.config, 'r') as f:
+
+pdnsconfig = configparser.ConfigParser()
+with open(config["configfile"], 'r') as f:
     config_string = '[default]\n' + f.read()
-config.read_string(config_string)
+pdnsconfig.read_string(config_string)
 
 mydb = mysql.connector.connect(
-  host=config["default"]["gmysql-host"],
-  user=config["default"]["gmysql-user"],
-  password=config["default"]["gmysql-password"],
-  database=config["default"]["gmysql-dbname"]
+  host=pdnsconfig["default"]["gmysql-host"],
+  user=pdnsconfig["default"]["gmysql-user"],
+  password=pdnsconfig["default"]["gmysql-password"],
+  database=pdnsconfig["default"]["gmysql-dbname"]
 )
 
 mycursor = mydb.cursor(dictionary=True)
