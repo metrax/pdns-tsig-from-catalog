@@ -1,0 +1,9 @@
+[Unit]
+Description=cron for pdns-tsig-from-catalog.service
+
+[Timer]
+Unit=pdns-tsig-from-catalog.service
+OnCalendar=*-*-* *:*:00
+
+[Install]
+WantedBy=timers.target

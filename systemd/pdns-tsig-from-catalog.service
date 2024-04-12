@@ -1,0 +1,12 @@
+[Unit]
+Description=Running pdns-tsig-from-catalog script
+Wants=pdns-tsig-from-catalog.timer
+
+[Service]
+Type=oneshot
+WorkingDirectory=/opt/scripts/pdns-tsig-from-catalog/
+Environment="PATH=/opt/scripts/pdns-tsig-from-catalog/.venv/bin/"
+ExecStart=python pdns-tsig-from-catalog.py
+
+[Install]
+WantedBy=multi-user.target
