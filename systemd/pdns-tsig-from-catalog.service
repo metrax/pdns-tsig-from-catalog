@@ -5,7 +5,7 @@ Wants=pdns-tsig-from-catalog.timer
 [Service]
 Type=oneshot
 WorkingDirectory=/opt/scripts/pdns-tsig-from-catalog/
-Environment="PATH=/opt/scripts/pdns-tsig-from-catalog/.venv/bin/"
+Environment="PATH=/opt/scripts/pdns-tsig-from-catalog/.venv/bin/:/bin/:/usr/bin/:/sbin/:/usr/sbin/"
 ExecStart=python pdns-tsig-from-catalog.py
 
 [Install]
