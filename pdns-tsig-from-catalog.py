@@ -28,7 +28,9 @@ mydb = mysql.connector.connect(
   host=pdnsconfig["default"]["gmysql-host"],
   user=pdnsconfig["default"]["gmysql-user"],
   password=pdnsconfig["default"]["gmysql-password"],
-  database=pdnsconfig["default"]["gmysql-dbname"]
+  database=pdnsconfig["default"]["gmysql-dbname"],
+  collation="utf8mb4_unicode_ci",
+  charset="utf8mb4"
 )
 
 mycursor = mydb.cursor(dictionary=True)
